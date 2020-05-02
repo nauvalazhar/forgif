@@ -18,9 +18,11 @@ Forgif is my old project, this is the Gif social network. The architecture is so
 5. Edit the `.env` file and adjust your database setting
 6. Run the `php artisan key:generate`
 7. Import the `forgif.sql` file into your database
-8. Run the `php artisan serve` command
-9. Done
+8. Run the `chmod -R 777 storage/framework/` command (If needed)
+9. Run the `php artisan serve` command
+10. Done
 
+### Credentials (For Local Only)
 #### User 1
 - Email: nauvalazhar2@gmail.com
 - Password: 123456
