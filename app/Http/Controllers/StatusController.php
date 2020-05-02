@@ -26,7 +26,7 @@ class StatusController extends Controller
     		base_path('public') . "/media/", $fileName . ".gif"
     	);
     	imagepng(imagecreatefromstring(file_get_contents($attachment)), base_path('public') . "/media/thumbs/" . $fileName . ".png");
-        $tomp4 = new Process(env('FFMPEG') . 'ffmpeg -i ' . $attachment . ' -acodec aac -pix_fmt yuv420p ' . base_path('public/media') . '/player/' . $fileName . '.mp4');
+        $tomp4 = new Process(env('FFMPEG') . 'ffmpeg -i ' . $attachment . ' -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ' . base_path('public/media') . '/player/' . $fileName . '.mp4');
         try {
             $tomp4->mustRun();
             
