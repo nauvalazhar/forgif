@@ -207,7 +207,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `status`, `location`, `picture`, `cover`, `bio`, `verified`, `provider_id`) VALUES
 (1, 'Muhamad Nauval Azhar', 'nauvalazhar2@gmail.com', '$2y$12$DUZBOkq9ENIcNuz07odIEugEmED4bPQibZ3L3pdAlVGECb7c2uqsS', 'qQ2AvHiAFiBERhLmVnG6Cu6bnLmotnYrSTuO3dNnCUxYWWNBZbNRkMDbW7Cd', '2017-07-11 11:01:55', '2020-05-02 07:20:52', 'mhdnauvalazhar', '1', NULL, 'user_5ead8070adfc6', 'user_cover_5ead81b11adfe', NULL, NULL, NULL),
-(2, 'Kodinger', 'itskodinger@gmail.com', '$2y$10$k4bkb0ETgf7PBb2.nOHKzePZE7XWcBZ/BxXggFn8p.76i0ILkMmNe', 'RPVdj0YWXjRvjCaQY8PwaH2ZrR3zZan5Wcu1YyHaUHsBk2NestxqfHPmNkCo', '2020-05-02 07:32:31', '2020-05-02 07:32:31', 'itskodinger', '0', NULL, 'user_5ead847f97621', NULL, NULL, NULL, NULL);
+(2, 'Kodinger', 'itskodinger@gmail.com', '$2y$10$k4bkb0ETgf7PBb2.nOHKzePZE7XWcBZ/BxXggFn8p.76i0ILkMmNe', 'RPVdj0YWXjRvjCaQY8PwaH2ZrR3zZan5Wcu1YyHaUHsBk2NestxqfHPmNkCo', '2020-05-02 07:32:31', '2020-05-02 07:32:31', 'itskodinger', '2', NULL, 'user_5ead847f97621', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
