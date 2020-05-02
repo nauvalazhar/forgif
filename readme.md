@@ -5,9 +5,9 @@ Forgif is my old project, this is the Gif social network. The architecture is so
 ## Requirements
 - PHP ^5.6
 - Composer
-- FFmpeg (Install globally)
+- [FFmpeg](https://ffmpeg.org/) (Desperately needed; Install it globally – so, PHP can access the `ffmpeg` command globally)
 - Email SMTP (For user activation)
-- Facebook App Key
+- Facebook App Key (Optional)
 
 ## Installation
 1. Clone this repo
@@ -27,9 +27,6 @@ Forgif is my old project, this is the Gif social network. The architecture is so
 #### User 2
 - Email: itskodinger@gmail.com
 - Password: 123456
-
-## Demo
-Soon
 
 ## Flow
 **The way this application works is:**
