@@ -20,13 +20,13 @@ Forgif is my old project, this is the Gif social network. The architecture is so
 8. Run the `php artisan serve` command
 9. Done
 
-**User 1**
-Email: nauvalazhar2@gmail.com
-Password: 123456
+#### User 1
+- Email: nauvalazhar2@gmail.com
+- Password: 123456
 
-**User 2**
-Email: itskodinger@gmail.com
-Password: 123456
+#### User 2
+- Email: itskodinger@gmail.com
+- Password: 123456
 
 ## Demo
 Soon
