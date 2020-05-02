@@ -4,6 +4,7 @@ Forgif is my old project, this is the Gif social network. The architecture is so
 
 ## Requirements
 - PHP ^5.6
+- PHP's `proc_open`, `proc_close`
 - Composer
 - [FFmpeg](https://ffmpeg.org/) (Desperately needed; Install it globally – so, PHP can access the `ffmpeg` command globally)
 - Email SMTP (For user activation)
