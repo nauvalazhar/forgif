@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 17, 2017 at 11:53 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Host: localhost
+-- Generation Time: May 02, 2020 at 02:54 PM
+-- Server version: 8.0.16
+-- PHP Version: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sos`
+-- Database: `forgif`
 --
 
 -- --------------------------------------------------------
@@ -40,7 +42,7 @@ CREATE TABLE `friends` (
 --
 
 INSERT INTO `friends` (`id`, `user_from`, `user_to`, `status`, `created_at`, `updated_at`) VALUES
-(2, 2, 1, 'confirmed', '2017-07-11 20:21:13', '2017-07-11 20:21:20');
+(1, 2, 1, 'confirmed', '2020-05-02 07:32:57', '2020-05-02 07:33:19');
 
 -- --------------------------------------------------------
 
@@ -56,14 +58,6 @@ CREATE TABLE `likes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `likes`
---
-
-INSERT INTO `likes` (`id`, `user_id`, `post_id`, `created_at`, `updated_at`) VALUES
-(122, 1, 2, '2017-07-15 14:03:39', '2017-07-15 14:03:39'),
-(123, 1, 1, '2017-07-15 14:20:41', '2017-07-15 14:20:41');
-
 -- --------------------------------------------------------
 
 --
@@ -72,7 +66,7 @@ INSERT INTO `likes` (`id`, `user_id`, `post_id`, `created_at`, `updated_at`) VAL
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -104,12 +98,38 @@ CREATE TABLE `notifications` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pages`
+--
+
+CREATE TABLE `pages` (
+  `id` int(191) NOT NULL,
+  `user_id` int(191) NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,
+  `content` text COLLATE utf8mb4_general_ci,
+  `keywords` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`id`, `user_id`, `title`, `slug`, `content`, `keywords`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Welcome to Forgif', 'welcome-to-forgif', '<p>Hai</p>', 'get started', 'publish', '2020-05-02 07:23:49', '2020-05-02 07:23:49'),
+(2, 1, 'About', 'about', '<p>This is about us page</p>', 'about', 'publish', '2020-05-02 07:25:02', '2020-05-02 07:25:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -130,13 +150,6 @@ CREATE TABLE `report` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `report`
---
-
-INSERT INTO `report` (`id`, `post_id`, `reason`, `status`, `user_id`, `to_user`, `by_user`, `created_at`, `updated_at`) VALUES
-(1, 2, 'asdasdasdasd', 'deleted', 1, NULL, 1, '2017-07-15 13:06:43', '2017-07-15 14:14:22');
 
 -- --------------------------------------------------------
 
@@ -162,8 +175,7 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`id`, `user_id`, `content`, `attachment`, `privacy`, `status`, `created_at`, `updated_at`, `meta`, `deleted_at`) VALUES
-(1, 1, 'asdasd', '59659ad3730ab', 'friend', 'publish', '2017-07-11 20:43:15', '2017-07-15 14:29:36', '{"ip":"::1"}', NULL),
-(2, 1, 'Hahahaha #D<br><br>#jjj<br>', '5965ac033f72b', 'friend', 'publish', '2017-07-11 21:56:35', '2017-07-15 14:14:22', '{"ip":"192.168.43.1"}', '2017-07-15 14:14:22');
+(1, 1, 'Eat, Patrick!', '5ead84c721cf0', 'friend', 'publish', '2020-05-02 07:33:43', '2020-05-02 07:33:43', '{\"ip\":\"127.0.0.1\"}', NULL);
 
 -- --------------------------------------------------------
 
@@ -173,29 +185,29 @@ INSERT INTO `status` (`id`, `user_id`, `content`, `attachment`, `privacy`, `stat
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `username` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `location` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `picture` text COLLATE utf8mb4_unicode_ci,
-  `cover` text COLLATE utf8mb4_unicode_ci,
-  `bio` text COLLATE utf8mb4_unicode_ci,
-  `verified` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `username` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `picture` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `cover` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `bio` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `verified` int(1) DEFAULT NULL,
+  `provider_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `status`, `location`, `picture`, `cover`, `bio`, `verified`) VALUES
-(1, 'Muhamad Nauval Azhar', 'nauvalazhar2@gmail.com', '$2y$10$.Ws9yi7m6JiUgNtNqPReluDUnqMx9ezvG7EfHphcZyVcok0TcgeUK', '1OY8U0SWgXnbjnfZt2FdK7RgLsxmXuybM6a6jmPum4012QDzXkl7T1WWtalh', '2017-07-11 11:01:55', '2017-07-11 11:41:13', 'int11', '1', 'Syarifuddin St', 'user_59651292daaa8', NULL, NULL, NULL),
-(2, 'Valastic', 'nauval.azhar@procyon.co.id', '$2y$10$tuynAy55qzQc1oPab8DpQ.ex4lgRf5ttoU9xMQm2/A8RXZ3RzvY82', 'z1AniJcSWhS3CcrIbB0M36N6uhQxeiqgrainQeudTAmSJVthTtSOLkMlisek', '2017-07-11 11:02:44', '2017-07-11 11:02:56', 'nauval.azhar', '2', NULL, 'user_596512c49ae61', NULL, NULL, NULL),
-(3, 'Frameborder', 'frameborder.code@gmail.com', '$2y$10$rrkClgzbi9v7K.GV98jWQOAlYwK6TXgIef3XR.37gRVWayxlsBWOu', 'zDL6LTfwVII1NTPDtB4BjDVa0A7IbljbmH70P5yRxMK2GP3skrQHMD2xgYwY', '2017-07-11 11:05:04', '2017-07-11 11:05:27', 'frameborder.cod', '2', NULL, 'user_5965135089c3e', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `status`, `location`, `picture`, `cover`, `bio`, `verified`, `provider_id`) VALUES
+(1, 'Muhamad Nauval Azhar', 'nauvalazhar2@gmail.com', '$2y$12$DUZBOkq9ENIcNuz07odIEugEmED4bPQibZ3L3pdAlVGECb7c2uqsS', 'qQ2AvHiAFiBERhLmVnG6Cu6bnLmotnYrSTuO3dNnCUxYWWNBZbNRkMDbW7Cd', '2017-07-11 11:01:55', '2020-05-02 07:20:52', 'mhdnauvalazhar', '1', NULL, 'user_5ead8070adfc6', 'user_cover_5ead81b11adfe', NULL, NULL, NULL),
+(2, 'Kodinger', 'itskodinger@gmail.com', '$2y$10$k4bkb0ETgf7PBb2.nOHKzePZE7XWcBZ/BxXggFn8p.76i0ILkMmNe', 'RPVdj0YWXjRvjCaQY8PwaH2ZrR3zZan5Wcu1YyHaUHsBk2NestxqfHPmNkCo', '2020-05-02 07:32:31', '2020-05-02 07:32:31', 'itskodinger', '1', NULL, 'user_5ead847f97621', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -223,6 +235,12 @@ ALTER TABLE `migrations`
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -258,37 +276,51 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
