@@ -22,7 +22,7 @@ Forgif is my old project, this is the Gif social network. The architecture is so
 9. Run the `php artisan serve` command
 10. Done
 
-### Credential (For Local Only)
+### Credentials (For Local Only)
 #### User 1
 - Email: nauvalazhar2@gmail.com
 - Password: 123456
