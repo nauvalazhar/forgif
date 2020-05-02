@@ -198,7 +198,8 @@ CREATE TABLE `users` (
   `cover` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `bio` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `verified` int(1) DEFAULT NULL,
-  `provider_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `provider_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 --
