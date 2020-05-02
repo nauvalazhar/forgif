@@ -79,8 +79,10 @@
                 </div>
             </form>
 
+            @if(env('FB_CLIENT') || env('FB_SECRET'))
             <div class="sm-title ocl">or one click login</div>
             <a href="{{url('login/facebook')}}" class="btn btn-facebook btn-block"><i class="ion ion-social-facebook"></i> Login with Facebook</a>
+            @endif
         </div>
         <div class="panel-footer">
             Don't have an account? <a href="{{route('register')}}">Create one</a>

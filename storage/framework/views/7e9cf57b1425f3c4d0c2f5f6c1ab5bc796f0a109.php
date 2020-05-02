@@ -79,8 +79,10 @@
                 </div>
             </form>
 
+            <?php if(env('FB_CLIENT') || env('FB_SECRET')): ?>
             <div class="sm-title ocl">or one click login</div>
             <a href="<?php echo e(url('login/facebook')); ?>" class="btn btn-facebook btn-block"><i class="ion ion-social-facebook"></i> Login with Facebook</a>
+            <?php endif; ?>
         </div>
         <div class="panel-footer">
             Don't have an account? <a href="<?php echo e(route('register')); ?>">Create one</a>
